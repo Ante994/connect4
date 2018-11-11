@@ -1,8 +1,8 @@
     
 class Player:
     
-    def __init__(self, name='TESTER', color='x'):
-        self.type = "OSOBA"
+    def __init__(self, name='TESTGUY', color='x'):
+        self.type = "PERSON"
         self.name = name
         self.color = color
 
@@ -11,11 +11,11 @@ class Player:
             return False
 
         if 0 >= choice > 6:
-            print("Pogrešan unos, unijeti 1-7")
+            print("Wrong input, choose from 1 to 7")
             return False
         
         if state.board[5][choice] != ' ':
-            print("Ovaj stupac je pun, odaberite drugi")
+            print("Column is full")
             return False
         
         

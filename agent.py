@@ -34,12 +34,10 @@ class Agent:
     def evaluate(self, state):
         my_streakTEST = 0
 
-        # svaka od ove tri metode vraca 1-4 to znaci koliko ima u nizu ()
         streak_vertical = self.vertical_streak(state.board, 'x')
         streak_horizontal = self.horizontal_streak(state.board, 'x')
         streak_diagonal = self.diagonal_streak(state.board, 'x')
 
-        # s ovim inicirati da igra cetvrti stupac
         if state.board[0][3] == 'x':
             my_streakTEST += 5
         elif state.board[0][3] == 'o':
@@ -53,18 +51,12 @@ class Agent:
             elif streak == 2:
                 my_streakTEST += streak * 10
             
-
-        # ovo je za potez suparnika, isto kao gori (1-4)
         opp_streak_vertical = self.vertical_streak(state.board, 'o')
         opp_streak_horizontal = self.horizontal_streak(state.board, 'o')
         opp_streak_diagonal = self.diagonal_streak(state.board, 'o')
-        
-        # znanima nas (4 ili potenicjalno 3 u nizu... nastavak doli)
         opp_streak = max(opp_streak_vertical, opp_streak_horizontal, opp_streak_diagonal)
                 
-        #print("MY STREAK:", my_streakTEST)
-        
-        if opp_streak == 4:
+		if opp_streak == 4:
             return -50000
         elif opp_streak == 3 and my_streakTEST < (opp_streak * 100):
             return (opp_streak * -100)
@@ -147,8 +139,6 @@ class Agent:
                 if temp > count:
                     count = temp
                     temp = 0
-        
-       # print(count, color)
         return count
 
     def horizontal_streak(self, state, color):
@@ -166,8 +156,6 @@ class Agent:
                 if temp > count:
                     count = temp
                     temp = 0
-
-        #print(count, color)
         return count
     
     def diagonal_streak(self, state, color):
@@ -205,5 +193,4 @@ class Agent:
                     temp = 0
 
         count = count1 if count1 >= count2 else count2
-        #print(count, color)
         return count
